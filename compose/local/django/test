@@ -1,7 +1,7 @@
 
 #!/usr/bin/env bash
 
-export DJANGO_SETTINGS_MODULE=nhl_analytics.settings
+export DJANGO_SETTINGS_MODULE=fitnes_app.settings
 
 # force DB from docker
 export DATABASE_ENGINE=django.db.backends.postgresql_psycopg2
