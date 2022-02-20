@@ -34,7 +34,7 @@ jobs:
         echo IPYTHONDIR=${{ secrets.IPYTHONDIR }} >> .django
         echo USE_DOCKER=${{ secrets.USE_DOCKER }} >> .django
         echo REDIS_URL=${{ secrets.REDIS_URL }} >> .django
-        cp .postgres.example .postgres
+        cp .envs/.local/.postgres.example .postgres
         cp .envs/.production/.django.example .django
         cp .envs/.production/.postgres.example .postgres
     - name: Build Container
