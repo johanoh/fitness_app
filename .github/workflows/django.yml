@@ -35,6 +35,7 @@ jobs:
         echo IPYTHONDIR=${{ secrets.IPYTHONDIR }} >> .django
         echo USE_DOCKER=${{ secrets.USE_DOCKER }} >> .django
         echo REDIS_URL=${{ secrets.REDIS_URL }} >> .django
+        cp .envs/.local/.postgres.example .envs/.local/.postgres  
     - name: Build Container
       run: |
         docker-compose build
