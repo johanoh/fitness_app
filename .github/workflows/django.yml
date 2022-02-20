@@ -28,4 +28,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        docker-compose run --rm local pm test
+        docker-compose run --rm local test
