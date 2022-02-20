@@ -53,6 +53,18 @@ COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
 RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 	&& rm -rf /wheels/
 
+COPY ./compose/common/entrypoint /entrypoint
+COPY ./compose/common/django/pm /usr/local/bin/pm
+COPY ./compose/local/django/start /start
+COPY ./compose/local/django/test /usr/local/bin/test
+
+
+RUN sed -i 's/\r$//g' /entrypoint && chmod +x /entrypoint && \
+  sed -i 's/\r$//g' /start && chmod +x /start && \
+  sed -i 's/\r$//g' /usr/local/bin/pm && chmod +x /usr/local/bin/pm && \
+  sed -i 's/\r$//g' /usr/local/bin/test && chmod +x /usr/local/bin/test
+
+  
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint

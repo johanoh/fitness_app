@@ -84,3 +84,22 @@ services:
     ports:
       - "5555:5555"
     command: /start-flower
+
+  test:
+    <<: *django
+    command:
+      test
+
+  test-coverage:
+    <<: *django
+    command:
+      test --cov-report term-missing --cov-report xml --cov=.
+
+  local:
+    <<: *django
+
+  production:
+    <<: *django
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
