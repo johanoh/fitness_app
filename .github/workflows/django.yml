@@ -30,6 +30,10 @@ jobs:
         echo USE_DOCKER=${{ secrets.USE_DOCKER }} >> .envs/.local/.django
         echo REDIS_URL=${{ secrets.REDIS_URL }} >> .envs/.local/.django
         cp .envs/.local/.postgres.example .envs/.local/.postgres
+        echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .envs/.local/.postgres
+        echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .envs/.local/.postgres
+        echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .envs/.local/.postgres
+        echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .envs/.local/.postgres
         cp .envs/.production/.django.example .envs/.production/.django
         cp .envs/.production/.postgres.example .envs/.production/.postgres
     - name: Build Container
