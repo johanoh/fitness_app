@@ -28,15 +28,15 @@ jobs:
         pip install -r requirements.txt
     - name: Create env file
       run: |
-        cp .envs/.local/.django.example .django
+        cp .envs/.local/.django.example .envs/.local/.django
         echo CELERY_FLOWER_PASSWORD= {{secrets.CELERY_FLOWER_PASSWORD }}>> .django
         echo CELERY_FLOWER_USER=${{ secrets.CELERY_FLOWER_USER }} >> .django
         echo IPYTHONDIR=${{ secrets.IPYTHONDIR }} >> .django
         echo USE_DOCKER=${{ secrets.USE_DOCKER }} >> .django
         echo REDIS_URL=${{ secrets.REDIS_URL }} >> .django
-        cp .envs/.local/.postgres.example .postgres
-        cp .envs/.production/.django.example .django
-        cp .envs/.production/.postgres.example .postgres
+        cp .envs/.local/.postgres.example .envs/.local/.postgres
+        cp .envs/.production/.django.example .envs/.production/.django
+        cp .envs/.production/.postgres.example .envs/.production/.postgres
     - name: Build Container
       run: |
         docker-compose build
