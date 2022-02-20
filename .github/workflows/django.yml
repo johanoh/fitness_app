@@ -26,6 +26,9 @@ jobs:
         python -m pip install --upgrade pip
         sudo apt-get install libpq-dev python-dev
         pip install -r requirements.txt
+    - name: Build Container
+      run: |
+        docker-compose build
     - name: Run Tests
       run: |
         docker-compose run --rm test
