@@ -21,19 +21,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        sudo apt-get install libpq-dev python-dev
-        pip install -r requirements.txt
     - name: Create env file
       run: |
         cp .envs/.local/.django.example .envs/.local/.django
-        echo CELERY_FLOWER_PASSWORD= {{secrets.CELERY_FLOWER_PASSWORD }}>> .django
-        echo CELERY_FLOWER_USER=${{ secrets.CELERY_FLOWER_USER }} >> .django
-        echo IPYTHONDIR=${{ secrets.IPYTHONDIR }} >> .django
-        echo USE_DOCKER=${{ secrets.USE_DOCKER }} >> .django
-        echo REDIS_URL=${{ secrets.REDIS_URL }} >> .django
+        echo CELERY_FLOWER_PASSWORD= {{secrets.CELERY_FLOWER_PASSWORD }}>> .envs/.local/.django
+        echo CELERY_FLOWER_USER=${{ secrets.CELERY_FLOWER_USER }} >> .envs/.local/.django
+        echo IPYTHONDIR=${{ secrets.IPYTHONDIR }} >> .envs/.local/.django
+        echo USE_DOCKER=${{ secrets.USE_DOCKER }} >> .envs/.local/.django
+        echo REDIS_URL=${{ secrets.REDIS_URL }} >> .envs/.local/.django
         cp .envs/.local/.postgres.example .envs/.local/.postgres
         cp .envs/.production/.django.example .envs/.production/.django
         cp .envs/.production/.postgres.example .envs/.production/.postgres
@@ -42,4 +37,4 @@ jobs:
         docker-compose build
     - name: Run Tests
       run: |
-        docker-compose run --rm test
+        docker-compose run --rm local test
