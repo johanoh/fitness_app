@@ -29,13 +29,17 @@ jobs:
     - name: Create env file
       run: |
         cd .envs/.local
-        touch .django
+        cp .django.example
         echo CELERY_FLOWER_PASSWORD= {{secrets.CELERY_FLOWER_PASSWORD }}>> .django
         echo CELERY_FLOWER_USER=${{ secrets.CELERY_FLOWER_USER }} >> .django
         echo IPYTHONDIR=${{ secrets.IPYTHONDIR }} >> .django
         echo USE_DOCKER=${{ secrets.USE_DOCKER }} >> .django
         echo REDIS_URL=${{ secrets.REDIS_URL }} >> .django
-        cp .postgres.example .postgres  
+        cp .postgres.example .postgres
+        cd 
+        cd .envs/.production
+        cp .django.example .django
+        cp .postgres.example .postgres
     - name: Build Container
       run: |
         docker-compose build
