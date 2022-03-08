@@ -28,8 +28,8 @@ django.setup()
 # -- Project information -----------------------------------------------------
 
 project = "fitness_app"
-copyright = """2022, Daniel Roy Greenfeld"""
-author = "Daniel Roy Greenfeld"
+copyright = """Johan Oh"""
+author = "Johan Oh"
 
 
 # -- General configuration ---------------------------------------------------
